@@ -1,0 +1,90 @@
+<html>
+    <script src="node_modules/jquery/jquery.js"></script>
+    <script src="node_modules/popper.js/dist/popper.js"></script>
+    <script src="node_modules/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="node_modules/vue/dist/vue.js"></script>
+    <script src="node_modules/vue-resource/dist/vue-resource.js"></script>
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css" />
+    <body>
+        <div id='app'>
+            <div class="row">
+                 <div class="col-sm">
+                    <p>Inserisci autore e messaggio del tweet</p>
+                     <input v-model="author" placeholder="author"> 
+                     <br>
+                    <input v-model="message" placeholder="message"> 
+                    <br><br>
+                    <button v-on:click="post">Invia dati post</button><br>
+                </div>
+                <div class="col-sm">
+                    <p>Inserisci id per eliminare tweet</p>
+                    <input v-model="tweetId" placeholder="Id"><br><br>
+                    <button v-on:click="deleteTweet">Elimina tweet</button><br> <br>
+                </div>
+                
+            </div>
+        
+            <hr>
+            
+            <div class="row">
+                    <div class="col-sm">
+                            <p>Operazioni sui tweet</p>
+                            <button v-on:click="loadTweets">Visualizza tweets</button>
+                            <button v-on:click="resetTweets">Reset tweets</button><br><br>
+                        <h1>Tutti i tweets</h1>
+                             <ul class="list-group">
+                                <p> 
+                                    <li  v-for='tweet in tweets' class="list-group-item">id: {{ tweet.id }}<br>author: {{ tweet.author }}<br>message: {{ tweet.message }}<br> </li>  
+                                 </p>
+                            </ul>
+                     </div>
+            </div>
+            <div class="row">
+                     <div class="col-sm">
+                            <p>Inserisci Author da cercare fra i tweets:</p>
+                            <input v-model="tweetAuthor" placeholder="Author"><br>
+                            <button v-on:click="getTweetByAuthor" >Cerca tweet</button><br>
+                                <h1>Tutti i Tweet filtrati per author:</h1>
+                                    <ul class="list-group">
+                                        <p> 
+                                            <li  v-for='tweet in tweetsAuthor' class="list-group-item">id: {{ tweet.id }}<br>author: {{ tweet.author }}<br>message: {{ tweet.message }}<br> </li>                                        </p>
+                                    </ul>
+                        </div>
+                         <div class="col-sm">
+                                <p>Inserisci word da cercare fra i tweet:</p>
+                                <input v-model="tweetWord" placeholder="Word"> <br>
+                                <button v-on:click="getTweetByWord" >Cerca tweet</button> <br>
+                                <h1>Tutti i tweets filtrati per word:</h1>
+                                    <ul class="list-group">
+                                        <p> 
+                                            <li  v-for='tweet in tweetsWord' class="list-group-item">id: {{ tweet.id }}<br>author: {{ tweet.author }}<br>message: {{ tweet.message }}<br> </li>  
+                                         </p>
+                                    </ul>
+                        </div>
+                         <div class="col-sm">
+                            <p>Inserisci id per cercare tweet:</p>
+                            <input v-model="tweetId" placeholder="Id"> <br>
+                            <button v-on:click="getTweetById" >Cerca tweet </button> <br>
+                            <h1>Tweet:</h1>
+                            <ul class="list-group"  >
+                                    <p> 
+                                        <li class="list-group-item" v-if="tweet">
+                                            id: {{tweet? tweet.id: null}}<br>
+                                            author: {{tweet? tweet.author: null}}<br>
+                                            message: {{tweet? tweet.message: null}}<br> 
+                                        </li>  
+                                     </p>
+                                </ul>
+                        </div>
+    
+           
+            
+            
+                   
+            
+                    
+                    </div>
+        </div>
+    </body>
+    <script src="./app.js"></script>
+</html>
